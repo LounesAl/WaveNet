@@ -3,7 +3,7 @@ from tensorflow.keras.layers import Conv1D, Add, Activation, Multiply, Dense, Fl
 from tensorflow.keras import Model
 
 """
-This file contains t
+This file contains the implementation for the WaveNet model
 """
 
 class BlockLayer(tf.keras.layers.Layer):
