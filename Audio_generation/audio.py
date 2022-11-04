@@ -66,4 +66,3 @@ def get_audio_from_model(model, sr, duration, seed_audio, frame_size):
         seed_audio[:-1] = seed_audio[1:]
         seed_audio[-1] = ampl_val_16
     return new_audio.astype(np.int16)
-
