@@ -3,7 +3,7 @@ from tensorflow.keras.layers import Conv1D, Add, Activation, Multiply, Dense, Fl
 from tensorflow.keras import Model
 
 """
-This file contains the implementation for the WaveNet model
+This file contains the implementation for the WaveNet model of audio generation 
 """
 
 class BlockLayer(tf.keras.layers.Layer):
