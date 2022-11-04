@@ -7,7 +7,7 @@ import tqdm
 import tensorflow as tf
 
 """
-This file contains function necessary for working with audio data and input and outputting audio from Wavenet.
+This file contains function necessary for working with audio data and input and outputting audio from Wavenet..
 """
 
 LJ_DIRECTORY = "C:\\Users\\pasca\\Desktop\\audioProject\\data\\ljdataset"
