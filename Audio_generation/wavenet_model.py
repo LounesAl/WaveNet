@@ -48,7 +48,7 @@ class WaveNet(Model):
     3) Changer le nom de A, B avec residual et scki_connection (pour une meilleur lisibilité !)
     4) Surcharger la méthode __modle__() au lieu de model
     5) Est ce que la ligne dilation_rate = 2 ** ((i + self.dilation_rate) % 9) est la bonne !!! je ne pense pas, 
-       nous on veut [2,4,8..512,2,4,8..512]
+       nous on veut [2,4,8..512,2,4,8..512].
     """
     def __init__(self, num_filters, filter_size, dilation_rate, num_layers, input_size):
         super(WaveNet, self).__init__()
