@@ -46,7 +46,7 @@ class WaveNet(Model):
     1) Est ce que une couche Dense() est utiles à la sortie des Output (la couche n'est pas mentionnée dans l'article WaveNet) ?
     2) À Quoi sert de mettre **kwargs comme argument d'une fonction/méthode
     3) Changer le nom de A, B avec residual et scki_connection (pour une meilleur lisibilité !)
-    4) Surcharger la méthode __modle__() au lieu de model
+    4) Surcharger la méthode __modle__() au lieu de model.
     5) Est ce que la ligne dilation_rate = 2 ** ((i + self.dilation_rate) % 9) est la bonne !!! je ne pense pas, 
        nous on veut [2,4,8..512,2,4,8..512].
     """
