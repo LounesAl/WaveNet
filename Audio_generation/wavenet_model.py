@@ -7,6 +7,11 @@ This file contains the implementation for the WaveNet model of audio generation
 """
 
 class BlockLayer(tf.keras.layers.Layer):
+    """
+    1) Est ce sue on doit ajouter un padding = 'causal' dans self.tanh_ et self.sigmoid_ ?
+    2) Est ce sque o peut surcharger la méthode __call__() au lieu d'utiliser call() ?
+    3) Peut-on surcharger la méthode get_config() ?
+    """
     def __init__(self, num_filters, filter_size, dilation_rate):
         super(BlockLayer, self).__init__()
         self.num_filters = num_filters
@@ -37,6 +42,14 @@ class BlockLayer(tf.keras.layers.Layer):
         return config
 
 class WaveNet(Model):
+    """
+    1) Est ce que une couche Dense() est utiles à la sortie des Output (la couche n'est pas mentionnée dans l'article WaveNet) ?
+    2) À Quoi sert de mettre **kwargs comme argument d'une fonction/méthode
+    3) Changer le nom de A, B avec residual et scki_connection (pour une meilleur lisibilité !)
+    4) Surcharger la méthode __modle__() au lieu de model
+    5) Est ce que la ligne dilation_rate = 2 ** ((i + self.dilation_rate) % 9) est la bonne !!! je ne pense pas, 
+       nous on veut [2,4,8..512,2,4,8..512]
+    """
     def __init__(self, num_filters, filter_size, dilation_rate, num_layers, input_size):
         super(WaveNet, self).__init__()
         self.num_filters = num_filters
