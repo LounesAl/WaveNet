@@ -1,3 +1,3 @@
 """
-gestion de l'entrainement 
+gestion de l'entrainement.
 """
