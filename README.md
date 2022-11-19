@@ -64,16 +64,62 @@ For GPU support, use
 pip install -r requirements_gpu.txt
 ```
 
-
-# Training the network
-
-## Dataset
+# Dataset
 
 You can use any corpus containing `.wav` files.
 
 - We've mainly used the [VCTK](http://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html) (around 10.4GB, [Alternative host](http://www.udialogue.org/download/cstr-vctk-corpus.html)) so far.
 - [LibriSpeech](http://www.openslr.org/12/)
 - [TEDLIUM release 2](http://www-lium.univ-lemans.fr/en/content/ted-lium-corpus)
+
+# 1. Speech-to-Text-WaveNet : End-to-end sentence level English
+The architecture is shown in the following figure.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/buriburisuri/speech-to-text-wavenet/master/png/architecture.png" width="1024"/>
+</p>
+(Some images are cropped from [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499) and [Neural Machine Translation in Linear Time](https://arxiv.org/abs/1610.10099)) 
+
+## Usage
+**Create dataset**
+
+1. Download and extract dataset(only VCTK support now, other will coming soon)
+2. Assume the directory of VCTK dataset is f:/speech, Execute to create record for train or test
+```
+python tools/create_tf_record.py -input_dir='f:/speech'
+```
+
+Execute to train model.
+```
+python train.py
+```
+
+Execute to evalute model.
+```
+python test.py
+```
+
+**Demo**
+
+1.Download pretrain model([buriburisuri model](https://drive.google.com/drive/folders/1HTxjhPnSqVpMkZS732pu3KOSJXZy8waf?usp=sharing)) and extract to 'release' directory
+
+2.Execute to transform a speech wave file to the English sentence. The result will be printed on the console. 
+```
+python demo.py -input_path <wave_file path>
+```
+
+For example, try the following command.
+```
+python demo.py -input_path=data/demo.wav -ckpt_dir=release/buriburisuri
+```
+
+**Citation**
+
+```
+Kim and Park. Speech-to-Text-WaveNet. 2016. GitHub repository. https://github.com/buriburisuri/.
+```
+
+
+# 2. Audio generation
 
 In order to train the network, execute
 ```bash
@@ -85,42 +131,4 @@ The script will recursively collect all `.wav` files in the directory.
 You can see documentation on each of the training settings by running
 ```bash
 python train.py --help
-```
-
-# 1 - Speech-to-Text-WaveNet : End-to-end sentence level English speech recognition
-The architecture is shown in the following figure.
-<p align="center">
-  <img src="https://raw.githubusercontent.com/buriburisuri/speech-to-text-wavenet/master/png/architecture.png" width="1024"/>
-</p>
-(Some images are cropped from [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499) and [Neural Machine Translation in Linear Time](https://arxiv.org/abs/1610.10099)) 
-
-## Create dataset
-1. Download and extract dataset(only VCTK support now, other will coming soon)
-2. Assume the directory of VCTK dataset is f:/speech, Execute to create record for train or test
-```
-python tools/create_tf_record.py -input_dir='f:/speech'
-```
-## Train
-Execute to train model.
-```
-python train.py
-```
-
-## Test
-Execute to evalute model.
-```
-python test.py
-```
-
-## Demo
-1.Download pretrain model([buriburisuri model](https://drive.google.com/drive/folders/1HTxjhPnSqVpMkZS732pu3KOSJXZy8waf?usp=sharing)) and extract to 'release' directory
-
-2.Execute to transform a speech wave file to the English sentence. The result will be printed on the console. 
-```
-python demo.py -input_path <wave_file path>
-```
-
-For example, try the following command.
-```
-python demo.py -input_path=data/demo.wav -ckpt_dir=release/buriburisuri
 ```
