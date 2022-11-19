@@ -10,8 +10,6 @@ import tensorflow as tf
 This file contains function necessary for working with audio data and input and outputting audio from Wavenet..
 """
 
-LJ_DIRECTORY = "C:\\Users\\pasca\\Desktop\\audioProject\\data\\ljdataset"
-
 
 # Gets all names of files within a directory
 def find_files(directory, pattern='*.wav'):
@@ -29,7 +27,7 @@ def load_train_valid_filenames(directory, num_samples=None, percent_training=0.9
         randomized_files = randomized_files[:num_samples]
     number_of_training_samples = int(round(percent_training * len(randomized_files)))
     training_files, validation_files = randomized_files[:number_of_training_samples], randomized_files[
-                                                                                      number_of_training_samples:]
+                                                                                    number_of_training_samples:]
     return training_files, validation_files
 
 # Reads the training/validation audio and concats it into a single array for the NN
@@ -52,17 +50,36 @@ def load_generic_audio(training_files, validation_files, sample_rate=16000):
 
     return np.array(training_data), np.array(validation_data)
 
-# Generates an audio clip from the NN. After each sample is collected, the inverse of the softmax is taken to normalize the sound
-def get_audio_from_model(model, sr, duration, seed_audio, frame_size):
-    new_audio = np.zeros((sr * duration))
-    for curr_sample_idx in tqdm.tqdm(range(new_audio.shape[0])):
-        distribution = np.array(model.predict(seed_audio.reshape(1, frame_size, 1)), dtype=float).reshape(256)
-        distribution /= distribution.sum().astype(float)
-        predicted_val = np.random.choice(range(256), p=distribution)
-        ampl_val_8 = predicted_val / 255.0
-        ampl_val_16 = (np.sign(ampl_val_8) * (1/255.0) * ((1 + 256.0)**abs(
-            ampl_val_8) - 1)) * 2**15
-        new_audio[curr_sample_idx] = ampl_val_16
-        seed_audio[:-1] = seed_audio[1:]
-        seed_audio[-1] = ampl_val_16
-    return new_audio.astype(np.int16)
+
+def convertToFrames(audio, frame_size, frame_shift):
+    X = []
+    Y = []
+    audio_len = len(audio)
+    for i in range(0, audio_len - frame_size - 1, frame_shift):
+        frame = audio[i:i + frame_size]
+        if len(frame) < frame_size:
+            break
+        if i + frame_size >= audio_len:
+            break
+        temp = audio[i + frame_size]
+        target_val = int((np.sign(temp) * (np.log(1 + 256 * abs(temp)) / (np.log(1 + 256))) + 1) / 2.0 * 255)
+        X.append(frame.reshape(frame_size, 1))
+        Y.append((np.eye(256)[target_val]))
+    return np.array(X), np.array(Y)
+
+
+def createDataset(audio_data, batch_size, frame_size, frame_shift):
+    data_frames = convertToFrames(audio_data, frame_size, frame_shift)
+    #print("data_frames: ", data_frames[0].shape)
+
+    ds = tf.data.Dataset.from_tensor_slices(data_frames)
+
+    ds = ds.repeat()
+
+    ds = ds.batch(batch_size)
+    #ds = ds.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    return ds
+
+
+
+
