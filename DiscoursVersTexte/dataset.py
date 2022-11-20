@@ -1,6 +1,7 @@
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
+
 def create(filepath, batch_size=1, repeat=False, buffsize=1000):
   def _parse(record):
     keys_to_features = {
@@ -13,6 +14,7 @@ def create(filepath, batch_size=1, repeat=False, buffsize=1000):
       serialized=record,
       features=keys_to_features
     )
+    
     audio = features['audio/data'].values
     shape = features['audio/shape'].values
     audio = tf.reshape(audio, shape)
