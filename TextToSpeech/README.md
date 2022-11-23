@@ -1,5 +1,5 @@
-# Speech-to-Text-WaveNet2 : End-to-end sentence level English speech recognition using DeepMind's WaveNet
-A tensorflow implementation of speech recognition based on DeepMind's [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499). (Hereafter the Paper)
+# Test-to-Speech-WaveNet2 : End-to-end sentence level English speech recognition using DeepMind's WaveNet
+A tensorflow implementation of Text recognition based on DeepMind's [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499). (Hereafter the Paper)
 
 The architecture is shown in the following figure.
 <p align="center">
