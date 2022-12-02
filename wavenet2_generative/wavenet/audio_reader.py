@@ -10,7 +10,7 @@ import tensorflow as tf
 import tensorflow.compat.v1 as tf
 
 FILE_PATTERN = r'p([0-9]+)_([0-9]+)\.flac'
-
+#source:https://github.com/ibab/tensorflow-wavenet.git
 
 def get_category_cardinality(files):
     id_reg_expression = re.compile(FILE_PATTERN)
