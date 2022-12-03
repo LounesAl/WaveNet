@@ -6,6 +6,7 @@ from tensorflow.keras import Model
 This file contains the implementation for the WaveNet model
 """
 
+
 class BlockLayer(tf.keras.layers.Layer):
     def __init__(self, num_filters, filter_size, dilation_rate):
         super(BlockLayer, self).__init__()
