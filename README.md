@@ -109,7 +109,7 @@ python demo.py -input_path <wave_file path>
 
 For example, try the following command.
 ```
-python demo.py -input_path=data/demo.wav -ckpt_dir=release/buriburisuri
+python demo.py -input_path=data/demo.wav -ckpt_dir=release/<name of the modele>
 ```
 
 **Citation**
