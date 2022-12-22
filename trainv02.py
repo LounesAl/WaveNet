@@ -5,7 +5,7 @@ import utils
 import wavenet
 import dataset
 import datetime
-'''
+
 flags = tf.compat.v1.flags
 flags.DEFINE_string('config_path', 'config/english-28.json', 'Directory to config.')
 flags.DEFINE_string('dataset_path', 'data/v28/test.record', 'Filepath to train dataset record.')
@@ -17,7 +17,7 @@ flags.DEFINE_string('pretrain_dir', 'pretrain', 'Directory to pretrain.')
 flags.DEFINE_string('ckpt_path', 'model/v28/ckpt', 'Path to directory holding a checkpoint.')
 flags.DEFINE_float('learning_rate', 0.01, 'Learning rate of train.')
 FLAGS = flags.FLAGS
-'''
+
 
 def main(_):
   print('branis1')
@@ -150,14 +150,9 @@ def main(_):
        # print(acc_sum)
         #writer_accuracy.add_summary(acc_sum, gp)
         
-        
         step=step+1
        
-        
-   
         losses_train, tps_train, preds_train, poses_train = 0, 0, 0, 0
-        
-     
         
       if (gp+1) % 1000 == 0 and gp != 0:
         save.save(sess,'model/v28/ckpt', global_step=global_step)
