@@ -8,7 +8,7 @@ flags = tf.compat.v1.app.flags
 flags.DEFINE_string('input_path', r'data\VCTK-Corpus\wav48\p225\p225_001.wav', 'path to wav file.')
 flags.DEFINE_string('evalute_path', r'trained_models\best', 'Path to directory holding a checkpoint.')
 flags.DEFINE_string('ckpt_model', r'trained_models\best', 'Path to directory holding a checkpoint.')
-FLAGS = flags.FLAGS
+FLAGS = flags.FLAGS 
 
 
 def main(_):
