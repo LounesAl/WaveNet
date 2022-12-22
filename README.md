@@ -128,8 +128,12 @@ is given in the figure below :
 
 
 
-**Citation**
-
+**Reference**
 ```
 Ibab. tensorflow-wavenet 2016. GitHub repository. https://github.com/ibab/tensorflow-wavenet/.
+```
+
+**Citation**
+```
+All,Gho,Meze,Brah. tensorflow-wavenet 2022. GitHub repository. https://github.com/LounesAl/.
 ```
