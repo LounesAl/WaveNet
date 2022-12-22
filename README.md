@@ -2,6 +2,8 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Reference](#Reference)
+* [Citation](#Citation)
 
 ## General info
 ### Speech-to-Text-WaveNet : End-to-end sentence level English
@@ -127,12 +129,12 @@ is given in the figure below :
 
 
 
-# Reference 
+## Reference 
 ```
 Ibab. tensorflow-wavenet 2016. GitHub repository. https://github.com/ibab/tensorflow-wavenet/.
 ```
 
-# Citation
+## Citation
 ```
 L. Allioui, S. Brahami, B. Ghoull, A. Mezemat. WaveNet 2022. GitHub repository. https://github.com/LounesAl/WaveNet .
 ```
