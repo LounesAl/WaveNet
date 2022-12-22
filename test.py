@@ -13,6 +13,8 @@ import tensorflow.compat.v1 as tf
 import dataset
 import utils
 import wavenet
+import datetime
+
 """
 flags = tf.app.flags
 flags.DEFINE_string('config_path', 'config/english-28.json', 'Directory to config.')
@@ -24,6 +26,8 @@ FLAGS = flags.FLAGS
 """
 def main(_):
   #utils.load(FLAGS.config_path)
+  
+  
   data=sample_rate=16000,
   num_channel=20,
   vocabulary=[" ", "a", "b", "c", "d", "e", "f", "g",
@@ -42,6 +46,21 @@ def main(_):
     tf.transpose(logits, perm=[1, 0, 2]), sequence_length, merge_repeated=False)
   outputs = tf.gather(vocabulary,  tf.sparse.to_dense(decodes[0]))
   save = tf.train.Saver()
+  
+  
+   #Tensorboard accuracy on test set 
+ 
+  logdir = "logs/fit/validation" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_freq=1)
+
+
+  #write on tensorbord
+  writer = tf.compat.v1.summary.FileWriter(logdir)
+  writer.add_graph(tf.compat.v1.get_default_graph())
+
+  accuracy = None
+  accuracy_summary = tf.compat.v1.Summary()
+  accuracy_summary.value.add(tag='F1_Score_test', simple_value=accuracy)
 
   evalutes = {}
   if os.path.exists('model/v28' + '/evaluate.json'):
@@ -75,7 +94,7 @@ def main(_):
           tps, preds, poses, count = 0, 0, 0, 0
           while True:
             try:
-              count += 1
+              
               y, y_ = sess.run((labels, outputs))
               y = utils.cvt_np2string(y)
               y_ = utils.cvt_np2string(y_)
@@ -83,6 +102,16 @@ def main(_):
               tps += tp
               preds += pred
               poses += pos
+              
+              #write accuracy in tensorboard 
+                      
+              f1_score_test= 2 * tps / (preds + poses + 1e-10)
+              accuracy = f1_score_test
+              accuracy_summary.value[0].simple_value = accuracy
+              print(accuracy_summary)
+              writer_accuracy_train.add_summary(accuracy_summary, count)
+              count += 1
+            
             #  if count % 1000 == 0:
             #    glog.info('processed %d: tp=%d, pred=%d, pos=%d.' % (count, tps, preds, poses))
             except:
