@@ -2,6 +2,8 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Reference](#Reference)
+* [Citation](#Citation)
 
 ## General info
 ### Speech-to-Text-WaveNet : End-to-end sentence level English
@@ -99,6 +101,8 @@ python test.py
 
 1.Download pretrain model <a href="./trained_models"> Best model </a> and extract to 'release' directory
 
+[Link to the best weight of the pretrained Wavenet](https://drive.google.com/drive/folders/1PWLCfA2xisnnqiKfEdfxq7cK283QZK2t?usp=sharing)
+
 2.Execute to transform a speech wave file to the English sentence. The result will be printed on the console. 
 ```
 python demo.py -input_path <wave_file path>
@@ -108,6 +112,7 @@ For example, try the following command.
 ```
 python demo.py -input_path=data/demo.wav -ckpt_model=release/<name of the modele>
 ```
+
 
 **Results**
 
@@ -122,8 +127,14 @@ is given in the figure below :
 </td>
 
 
-**Citation**
 
+
+## Reference 
 ```
 Ibab. tensorflow-wavenet 2016. GitHub repository. https://github.com/ibab/tensorflow-wavenet/.
+```
+
+## Citation
+```
+L. Allioui, S. Brahami, B. Ghoull, A. Mezemat. WaveNet 2022. GitHub repository. https://github.com/LounesAl/WaveNet.
 ```
