@@ -31,8 +31,8 @@ def main(_):
     saver.restore(sess, FLAGS.ckpt_model)
     wave = utils.read_wave(FLAGS.input_path)
     output = utils.cvt_np2string(sess.run(outputs, feed_dict={inputs: [wave], sequence_length: [wave.shape[0]]}))[0]
-    glog.info('%s: %s.', FLAGS.input_path, output)
-  return 0
+    # glog.info('%s: %s.', FLAGS.input_path, output)
+  return output
 
 
 if __name__ == '__main__':
