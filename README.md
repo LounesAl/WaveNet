@@ -101,6 +101,8 @@ python test.py
 
 1.Download pretrain model <a href="./trained_models"> Best model </a> and extract to 'release' directory
 
+[Link to the best weight of the pretrained Wavenet](https://drive.google.com/drive/folders/1PWLCfA2xisnnqiKfEdfxq7cK283QZK2t?usp=sharing)
+
 2.Execute to transform a speech wave file to the English sentence. The result will be printed on the console. 
 ```
 python demo.py -input_path <wave_file path>
@@ -110,9 +112,7 @@ For example, try the following command.
 ```
 python demo.py -input_path=data/demo.wav -ckpt_model=release/<name of the modele>
 ```
-**Pretrained Model**
 
-[Link to the best weight of the pretrained Wavenet](https://drive.google.com/drive/folders/1PWLCfA2xisnnqiKfEdfxq7cK283QZK2t?usp=sharing)
 
 **Results**
 
