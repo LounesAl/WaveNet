@@ -132,7 +132,7 @@ is given in the figure below :
 Ibab. tensorflow-wavenet 2016. GitHub repository. https://github.com/ibab/tensorflow-wavenet/.
 ```
 
-#Citation
+# Citation
 ```
 L. Allioui, S. Brahami, B. Ghoull, A. Mezemat. WaveNet 2022. GitHub repository. https://github.com/LounesAl/WaveNet .
 ```
