@@ -17,26 +17,26 @@ FLAGS = flags.FLAGS
 
 def _read_vctk(root, ratio=0.2):
   ids = []
-  for line in open(root + '/VCTK-Corpus/speaker-info.txt', 'r').readlines()[1:]:
-    ids.append('/' + line.split(' ')[0])
+  for line in open(root + r'\VCTK-Corpus\speaker-info.txt', 'r').readlines()[1:]:
+    ids.append('\\' + 'p' + line.split(' ')[0])
   train_filenames = []
   test_filenames = []
   
+  
   for i, id in enumerate(ids):
     
-    
-    txt_dir = '/VCTK-Corpus/txt' + id
-    wav_dir = '/VCTK-Corpus/wav48' + id
+    txt_dir = r'\VCTK-Corpus\txt' + id
+    wav_dir = r'\VCTK-Corpus\wav48' + id
     
     for filename in os.listdir(root + wav_dir):
       stem, ext = os.path.splitext(filename)
       
       nametxt=stem.split('_')
-      #print(txt_dir + '/' + str(nametxt[0]) +'_'+str(nametxt[1])+'.txt')
-      if ext == '.flac':
-        wav_name = wav_dir + '/' + filename
+    
+      if ext == '.wav':
+        wav_name = wav_dir + '\\' + filename
         
-        txt_name = txt_dir + '/' + str(nametxt[0]) +'_'+str(nametxt[1])+'.txt'
+        txt_name = txt_dir + '\\' + str(nametxt[0]) +'_'+str(nametxt[1])+'.txt'
         
         if os.path.exists(root + txt_name):
           if random.uniform(0, 1) < ratio:
