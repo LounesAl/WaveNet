@@ -135,5 +135,5 @@ Ibab. tensorflow-wavenet 2016. GitHub repository. https://github.com/ibab/tensor
 
 **Citation**
 ```
-L.Allioui, B.Ghoull, A.Mezemat, S.Brahami. WaveNet 2022. GitHub repository. https://github.com/LounesAl/WaveNet .
+L. Allioui, S. Brahami, B. Ghoull, A. Mezemat. WaveNet 2022. GitHub repository. https://github.com/LounesAl/WaveNet .
 ```
