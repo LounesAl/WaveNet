@@ -26,7 +26,7 @@ FLAGS = flags.FLAGS
 """
 def main(_):
   #utils.load(FLAGS.config_path)
-  count=0
+  
   
   data=sample_rate=16000,
   num_channel=20,
