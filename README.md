@@ -108,6 +108,9 @@ For example, try the following command.
 ```
 python demo.py -input_path=data/demo.wav -ckpt_model=release/<name of the modele>
 ```
+**Pretrained Model**
+
+[Link to the best weight of the pretrained Wavenet](https://drive.google.com/drive/folders/1PWLCfA2xisnnqiKfEdfxq7cK283QZK2t?usp=sharing)
 
 **Results**
 
@@ -121,10 +124,9 @@ is given in the figure below :
 <img src="images/result.png" width="500"></img>
 </td>
 
-**Pretrained Model**
 
 
-[Wavenet](https://drive.google.com/drive/folders/1PWLCfA2xisnnqiKfEdfxq7cK283QZK2t?usp=sharing)
+
 
 **Citation**
 
