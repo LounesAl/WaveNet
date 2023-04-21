@@ -40,7 +40,7 @@ def main(_):
   sequence_length = tf.cast(train_dataset[2], tf.int32)
   logits = wavenet.bulid_wavenet(waves, len(utils.Data.vocabulary), is_training=True)
   loss = tf.reduce_mean(input_tensor=tf.compat.v1.nn.ctc_loss(labels, logits, sequence_length, time_major=False))
-  print('branis3')
+
   vocabulary = tf.constant(utils.Data.vocabulary)
   decodes, _ = tf.nn.ctc_beam_search_decoder(inputs=tf.transpose(a=logits, perm=[1, 0, 2]), sequence_length=sequence_length)
   outputs = tf.gather(vocabulary, tf.sparse.to_dense(decodes[0]))
@@ -49,7 +49,7 @@ def main(_):
   update_ops = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.UPDATE_OPS)
   with tf.control_dependencies(update_ops):
     optimize = tf.compat.v1.train.AdamOptimizer(learning_rate=0.01).minimize(loss=loss, global_step=global_step)
-  print('branis4')
+ 
   
   #Tensorboard Loss
   logdir = "logs/fit/train" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
